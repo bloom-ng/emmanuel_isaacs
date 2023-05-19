@@ -15,9 +15,9 @@ return new class extends Migration {
         Schema::create('categories', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->unsignedInteger('position')->nullable();
-            $table->integer('parent_id');
-            $table->unsignedBigInteger('product_id');
+            $table->unsignedInteger('position')->nullable()->default(0);
+            $table->integer('parent_id')->nullable();
+            $table->unsignedBigInteger('product_id')->nullable();
 
             $table->timestamps();
         });

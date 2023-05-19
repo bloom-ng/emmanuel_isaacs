@@ -6,20 +6,20 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('home') }}" class="font-bold text-blue-500 text-lg">
-                        emmanuel_isaacs
+                        Emmanuel Isaacs
                     </a>
                 </div>
 
                 @auth
                     <!-- Navigation Links -->
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
+                        <x-nav-link :href="route('admin.home')" :active="request()->routeIs('home')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
                     </div>
 
                     
-                    <x-nav-dropdown title="Apps" align="right" width="48">
+                    <x-nav-dropdown title="Modules" align="right" width="48">
                             @can('view-any', App\Models\User::class)
                             <x-dropdown-link href="{{ route('users.index') }}">
                             Users

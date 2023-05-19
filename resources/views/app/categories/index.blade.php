@@ -59,12 +59,7 @@
                                 <th class="px-4 py-3 text-left">
                                     @lang('crud.categories.inputs.position')
                                 </th>
-                                <th class="px-4 py-3 text-right">
-                                    @lang('crud.categories.inputs.parent_id')
-                                </th>
-                                <th class="px-4 py-3 text-left">
-                                    @lang('crud.categories.inputs.product_id')
-                                </th>
+                                
                                 <th></th>
                             </tr>
                         </thead>
@@ -77,13 +72,7 @@
                                 <td class="px-4 py-3 text-left">
                                     {{ $category->position ?? '-' }}
                                 </td>
-                                <td class="px-4 py-3 text-right">
-                                    {{ $category->parent_id ?? '-' }}
-                                </td>
-                                <td class="px-4 py-3 text-left">
-                                    {{ optional($category->product)->name ?? '-'
-                                    }}
-                                </td>
+                               
                                 <td
                                     class="px-4 py-3 text-center"
                                     style="width: 134px;"

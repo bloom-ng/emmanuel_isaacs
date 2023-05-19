@@ -28,21 +28,7 @@
                         </h5>
                         <span>{{ $category->position ?? '-' }}</span>
                     </div>
-                    <div class="mb-4">
-                        <h5 class="font-medium text-gray-700">
-                            @lang('crud.categories.inputs.parent_id')
-                        </h5>
-                        <span>{{ $category->parent_id ?? '-' }}</span>
-                    </div>
-                    <div class="mb-4">
-                        <h5 class="font-medium text-gray-700">
-                            @lang('crud.categories.inputs.product_id')
-                        </h5>
-                        <span
-                            >{{ optional($category->product)->name ?? '-'
-                            }}</span
-                        >
-                    </div>
+                   
                 </div>
 
                 <div class="mt-10">

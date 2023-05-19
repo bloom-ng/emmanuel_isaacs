@@ -12,6 +12,8 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderItemController;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AdminDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,13 +26,15 @@ use App\Http\Controllers\OrderItemController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/admin/home', [AdminDashboardController::class, 'index'])->name('admin.home');
+
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
+Route::any('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::prefix('/')
     ->middleware('auth')

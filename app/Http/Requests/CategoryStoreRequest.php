@@ -26,8 +26,8 @@ class CategoryStoreRequest extends FormRequest
         return [
             'name' => ['required', 'max:255', 'string'],
             'position' => ['nullable', 'max:255'],
-            'parent_id' => ['required', 'numeric'],
-            'product_id' => ['required', 'exists:products,id'],
+            'parent_id' => ['nullable', 'numeric'],
+            'product_id' => ['nullable', 'exists:products,id'],
         ];
     }
 }
