@@ -25,14 +25,14 @@ return new class extends Migration {
             $table->decimal('height');
             $table->decimal('length');
             $table->decimal('price');
-            $table->decimal('sale_price');
-            $table->date('sale_start');
-            $table->date('sale_end');
+            $table->decimal('sale_price')->nullable();
+            $table->date('sale_start')->nullable();
+            $table->date('sale_end')->nullable();
             $table->longText('description');
             $table->longText('short_description');
             $table->tinyInteger('type');
             $table->decimal('shipping_price');
-            $table->longText('download_link');
+            $table->longText('download_link')->nullable();
 
             $table->timestamps();
         });

@@ -3,9 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\ProductUpdateRequest;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -35,7 +37,10 @@ class ProductController extends Controller
     {
         $this->authorize('create', Product::class);
 
-        return view('app.products.create');
+        $categories = Category::pluck('name', 'id');
+        $types = Product::getTypeMapping();
+
+        return view('app.products.create', compact('categories', 'types'));
     }
 
     /**
@@ -48,10 +53,25 @@ class ProductController extends Controller
 
         $validated = $request->validated();
 
+        $validated['thumbnail'] = $request->file('thumbnail')->store('public/images');
+        $validated['image'] = $request->file('image')->store('public/images');
+
+        if ($request->hasFile('image_2')) {
+            $validated['image_2'] = $request->file('image_2')->store('public/images');
+        }
+
+        if ($request->hasFile('download_link')) {
+            $validated['download_link'] = $request->file('download_link')->store('public/images');
+        }
+
+        // generate slug
+        $validated['slug'] = Str::slug($validated['name']). "_" . Str::random(5) ;
+ 
+        // dd($validated);
         $product = Product::create($validated);
 
         return redirect()
-            ->route('products.edit', $product)
+            ->route('products.index')
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -64,7 +84,10 @@ class ProductController extends Controller
     {
         $this->authorize('view', $product);
 
-        return view('app.products.show', compact('product'));
+        $categories = Category::pluck('name', 'id');
+        $types = Product::getTypeMapping();
+
+        return view('app.products.show', compact('product', 'types', 'categories'));
     }
 
     /**
@@ -76,7 +99,10 @@ class ProductController extends Controller
     {
         $this->authorize('update', $product);
 
-        return view('app.products.edit', compact('product'));
+        $categories = Category::pluck('name', 'id');
+        $types = Product::getTypeMapping();
+
+        return view('app.products.edit', compact('product', 'types', 'categories'));
     }
 
     /**
@@ -89,6 +115,23 @@ class ProductController extends Controller
         $this->authorize('update', $product);
 
         $validated = $request->validated();
+
+        if ($request->hasFile('thumbnail')) {
+            $validated['thumbnail'] = $request->file('thumbnail')->store('public/images');
+        }
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('public/images');
+        }
+
+        if ($request->hasFile('image_2')) {
+            $validated['image_2'] = $request->file('image_2')->store('public/images');
+        }
+
+        if ($request->hasFile('download_link')) {
+            $validated['download_link'] = $request->file('download_link')->store('public/images');
+        }
+
 
         $product->update($validated);
 

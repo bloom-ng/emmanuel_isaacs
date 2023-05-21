@@ -49,4 +49,12 @@ class Product extends Model
     {
         return $this->hasMany(Review::class);
     }
+
+    public static function getTypeMapping()
+    {
+        return [
+            0 => "Virtual",
+            1 => "Physical",
+        ];
+    }
 }

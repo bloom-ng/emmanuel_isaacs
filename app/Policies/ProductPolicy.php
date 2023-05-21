@@ -41,7 +41,7 @@ class ProductPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->role == "admin";;
     }
 
     /**
@@ -53,7 +53,7 @@ class ProductPolicy
      */
     public function update(User $user, Product $model)
     {
-        return true;
+        return $user->role == "admin";;
     }
 
     /**
@@ -65,7 +65,7 @@ class ProductPolicy
      */
     public function delete(User $user, Product $model)
     {
-        return true;
+        return $user->role == "admin";;
     }
 
     /**
@@ -77,7 +77,7 @@ class ProductPolicy
      */
     public function deleteAny(User $user)
     {
-        return true;
+        return $user->role == "admin";;
     }
 
     /**

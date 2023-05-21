@@ -19,6 +19,7 @@
                     method="POST"
                     action="{{ route('products.store') }}"
                     class="mt-4"
+                    enctype="multipart/form-data"
                 >
                     @include('app.products.form-inputs')
 

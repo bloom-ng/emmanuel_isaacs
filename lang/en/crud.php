@@ -138,10 +138,10 @@ return [
         'show_title' => 'Show Product',
         'inputs' => [
             'name' => 'Name',
-            'category_id' => 'Category Id',
+            'category_id' => 'Category',
             'quantity' => 'Quantity',
             'image' => 'Image',
-            'image_2' => 'Image 2',
+            'image_2' => 'Alternate Image',
             'thumbnail' => 'Thumbnail',
             'slug' => 'Slug',
             'weight' => 'Weight',
