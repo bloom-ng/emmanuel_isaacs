@@ -1,9 +1,18 @@
-<div class="space-y-4 my-24">
+<div class="space-y-4 mt-30"   
+data-aos="fade-left"  
+data-aos-delay="200"
+data-aos-duration="600" 
+>
     <details
       class="group border-s-4 border-red-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
       open
+
+      data-aos="fade-left"  
+      data-aos-delay="100"
+      data-aos-duration="700"
     >
-      <summary class="flex cursor-pointer items-center justify-between gap-1.5">
+      <summary class="flex cursor-pointer items-center justify-between gap-1.5"  
+       >
         <h2 class="text-lg font-medium text-gray-900">
             How can I place an order for books on your website?
         </h2>
@@ -34,6 +43,10 @@
   
     <details
       class="group border-s-4 border-red-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
+
+      data-aos="fade-left"  
+      data-aos-delay="200"
+      data-aos-duration="700"
     >
       <summary class="flex cursor-pointer items-center justify-between gap-1.5">
         <h2 class="text-lg font-medium text-gray-900">
@@ -66,6 +79,10 @@
     </details>
     <details
       class="group border-s-4 border-red-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
+
+      data-aos="fade-left"  
+      data-aos-delay="300"
+      data-aos-duration="700"
     >
       <summary class="flex cursor-pointer items-center justify-between gap-1.5">
         <h2 class="text-lg font-medium text-gray-900">

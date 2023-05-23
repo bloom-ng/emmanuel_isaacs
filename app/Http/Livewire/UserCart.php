@@ -19,25 +19,25 @@ class UserCart extends Component
     {
         $this->session = $request->ip();
         $user_ip = $this->session;
-        $this->items = Cart::query()
-                            ->when(Auth::guest(), function ($query) use($user_ip) {
-                                $query->where('session', $user_ip);
-                            }, function ($query) {
-                                $query->where('user_id', Auth::id());
-                            })
-                            ->get();
+        $this->items = $this->fetchUserCart($user_ip);
     }
 
     public function updateItems()
     {
         $user_ip = $this->session;
-        $this->items = Cart::query()
+        $this->items = $this->fetchUserCart($user_ip);
+    }
+
+    private function fetchUserCart($user_ip)
+    {
+        $user_cart = Cart::query()
                             ->when(Auth::guest(), function ($query) use($user_ip) {
                                 $query->where('session', $user_ip);
                             }, function ($query) {
                                 $query->where('user_id', Auth::id());
                             })
                             ->get();
+        return $user_cart;
     }
 
     public function render()

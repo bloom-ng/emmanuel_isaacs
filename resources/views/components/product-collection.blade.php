@@ -1,4 +1,9 @@
-<section class="bg-white my-18">
+<section class="bg-white my-18"  
+    data-aos="fade-left"  
+    data-aos-delay="200"
+    data-aos-duration="600" 
+    data-aos-easing="ease-in-sine"
+>
     <div class="max-w-screen-xl px-4 py-8 mx-auto sm:px-6 sm:py-12 lg:px-8">
       <header class="text-center py-4">
         <h2 class="lg:text-4xl font-bold text-gray-700 sm:text-3xl">

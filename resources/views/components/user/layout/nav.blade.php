@@ -1,10 +1,20 @@
-<header aria-label="Page Header" class="bg-amber-50 shadow-sm ">
-    <div class="mx-auto max-w-screen-xl px-4 py-2 sm:px-6 lg:px-8 ">
+<header aria-label="Page Header" class="bg-amber-50 shadow-sm "  >
+    <div class="mx-auto max-w-screen-xl px-4 py-2 sm:px-6 lg:px-8 "  
+            data-aos="fade-up"  
+            data-aos-delay="300"
+            data-aos-duration="800"
+            >
         <div class="flex justify-between">
             <div>
-                <img height="30" class="h-[50px]" src="/assets/logo.jpg" alt="">
+                <a href="{{route('home')}}">
+                    <img height="30" class="h-[50px]" src="/assets/logo.jpg" alt="">
+                </a>
             </div>
-            <div class="flex items-center justify-end">
+            <div class="flex items-center justify-end"   
+                data-aos="fade-right"  
+                data-aos-delay="400"
+                data-aos-duration="800"
+                >
                 <div class="flex-col items-center gap-4 justify-center">
                     <a href="#" class="block shrink-0 text-center  px-2 py-2  text-gray-600  hover:text-red-800 ">
                         <span class="sr-only">About</span>
@@ -23,8 +33,12 @@
                     </a>
                 </div>
 
-                <div class="flex-col items-center  justify-center">
-                    <a href="#" class="block shrink-0  px-2 py-2 text-gray-600  hover:text-red-800 ">
+                <div class="flex-col items-center  justify-center"
+                    data-aos="fade-right"  
+                    data-aos-delay="500"
+                    data-aos-duration="1000"
+                >
+                    <a href="{{route('store.cart')}}" class="block shrink-0  px-2 py-2 text-gray-600  hover:text-red-800 ">
                         <span class="sr-only">Cart</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                             stroke="currentColor" class="w-6 h-6 inline ">

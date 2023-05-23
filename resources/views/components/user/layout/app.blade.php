@@ -19,6 +19,13 @@
         
         <!-- Icons -->
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+
+        {{-- AOS --}}
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+       
+        {{--  / AOS --}}
         
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -31,7 +38,6 @@
         <style>
             /* Add any additional custom styles for the preloader here */
     
-            /* Example of a stylish preloader */
             .preloader {
                 display: flex;
                 align-items: center;
@@ -131,7 +137,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(function() {
                 document.querySelector('.preloader').style.display = 'none';
-            }, 5000);
+            }, 200);
             });
         </script>
         
@@ -150,6 +156,10 @@
                
             })
         </script>
+
+<script>
+    AOS.init();
+</script>
 
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script>

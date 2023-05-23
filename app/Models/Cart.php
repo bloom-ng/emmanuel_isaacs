@@ -15,8 +15,26 @@ class Cart extends Model
 
     protected $searchableFields = ['*'];
 
+    protected $with = ['product'];
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public static function getUserCart()
+    {
+        return static::query()
+                            ->when(auth()->guest(), function ($query) {
+                                $query->where('session', request()->ip());
+                            }, function ($query) {
+                                $query->where('user_id', auth()->id());
+                            })
+                            ->get();
     }
 }

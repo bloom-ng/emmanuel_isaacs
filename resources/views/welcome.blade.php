@@ -52,6 +52,8 @@
 
     <x-product-collection limit="3" />
 
+    <x-contact-cta />
+
     <x-faqs />
 
 

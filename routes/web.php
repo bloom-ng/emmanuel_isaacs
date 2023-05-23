@@ -14,6 +14,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\StoreCartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,13 +31,21 @@ use App\Http\Controllers\AdminDashboardController;
 Auth::routes();
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/admin/home', [AdminDashboardController::class, 'index'])->name('admin.home');
+Route::get('about', [HomeController::class, 'index'])->name('about');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 Route::any('/logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::prefix('/')
+// Store
+
+Route::get('cart', [StoreCartController::class, 'index'])->name('store.cart');
+
+
+// Admin
+
+Route::get('/admin/home', [AdminDashboardController::class, 'index'])->name('admin.home');
+Route::prefix('/admin')
     ->middleware('auth')
     ->group(function () {
         Route::resource('users', UserController::class);

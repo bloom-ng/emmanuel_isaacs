@@ -1,4 +1,4 @@
-<div class="swiper mySwiper">
+<div class="swiper mySwiper"   data-aos="fade-up"  data-aos-delay="800" data-aos-duration="1400">
     <div class="swiper-wrapper">
       <div class="swiper-slide">
         <img

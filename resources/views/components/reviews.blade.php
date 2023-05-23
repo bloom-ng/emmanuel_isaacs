@@ -1,11 +1,18 @@
-<section class="bg-white lg:mt-28 sm:mt-16">
+<section class="bg-white lg:mt-28 sm:mt-16"   
+    data-aos="fade-right"  
+    data-aos-delay="100"
+    data-aos-duration="800">
     <div class="mx-auto max-w-screen-xl px-4 py-24 sm:px-6 sm:py-24 lg:px-8">
       <h2 class="text-center text-gray-700 my-8 text-4xl font-bold tracking-tight sm:text-5xl ">
         Book reviews
       </h2>
   
       <div class="md:mt-16 mt-8 grid grid-cols-1 gap-4 md:grid-cols-3 md:gap-8">
-        <blockquote class=" backdrop-blur-md shadow-xl hover:shadow-md rounded-lg bg-gradient-to-tr from-amber-50 to-amber-200 hover:to-amber-300 p-8">
+        <blockquote    
+        data-aos="fade-right"  
+        data-aos-delay="200"
+        data-aos-duration="700" 
+        class=" backdrop-blur-md shadow-xl hover:shadow-md rounded-lg bg-gradient-to-tr from-amber-50 to-amber-200 hover:to-amber-300 p-8">
           <div class="flex items-center gap-4">
             
   
@@ -67,16 +74,20 @@
             </div>
           </div>
   
-          <p class="line-clamp-2 sm:line-clamp-none mt-4 text-gray-500">
+          <p class="line-clamp-none sm:line-clamp-none mt-4 text-gray-500">
             The Mathematics of Time' is an extraordinary book that bridges the gap between mathematics 
             and the abstract concept of time. 
             The author's passion for the subject shines through every page, 
             making it a joy to read. The book is meticulously researched, 
-            and the explanations are clear and concise
+            and the explanations are clear and concise.
           </p>
         </blockquote>
   
-        <blockquote class="rounded-lg bg-red-200 hover:bg-red-100 p-8">
+        <blockquote 
+        data-aos="fade-up"  
+        data-aos-delay="300"
+        data-aos-duration="700" 
+        class="rounded-lg bg-gradient-to-r from-red-200 to-orange-200 hover:bg-red-100 p-8">
           <div class="flex items-center gap-4">
            
   
@@ -138,13 +149,17 @@
             </div>
           </div>
   
-          <p class="line-clamp-2 sm:line-clamp-none mt-4 text-gray-500">
+          <p class="line-clamp-none sm:line-clamp-none mt-4 text-gray-500">
             I can't recommend 'The Mathematics of Time' enough! This book offers a fascinating journey into the realm where mathematics and time intersect. 
-            The author's ability to make complex theories and concepts accessible to readers of all backgrounds is truly remarkable
+            The author's ability to make complex theories and concepts accessible to readers of all backgrounds is truly remarkable.
           </p>
         </blockquote>
   
-        <blockquote class=" shadow-xl hover:shadow-md  rounded-lg bg-gradient-to-tr from-amber-50 to-amber-200 hover:to-amber-300 p-8">
+        <blockquote  
+        data-aos="fade-left"  
+        data-aos-delay="200"
+        data-aos-duration="600" 
+        class=" shadow-xl hover:shadow-md  rounded-lg bg-gradient-to-tr from-amber-50 to-amber-200 hover:to-amber-300 p-8">
           <div class="flex items-center gap-4">
            
   
@@ -206,7 +221,7 @@
             </div>
           </div>
   
-          <p class="line-clamp-2 sm:line-clamp-none mt-4 text-gray-500">
+          <p class="line-clamp-none sm:line-clamp-none mt-4 text-gray-500">
             This book strikes the perfect balance between rigorous explanations and accessible storytelling,
              making it an engaging read for both experts and novices alike. It will challenge your assumptions, 
              ignite your imagination, 
