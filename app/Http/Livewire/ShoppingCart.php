@@ -15,7 +15,8 @@ class ShoppingCart extends Component
     public $shippingTotal;
 
     protected $listeners = [
-        'cartUpdated' => '$refresh'
+        'cartUpdated' => '$refresh',
+        'cartUpdated' => 'resetTotal',
     ];
 
     // lifecycle hook
@@ -25,9 +26,7 @@ class ShoppingCart extends Component
         $user_ip = $this->session;
         $this->items = $this->fetchUserCart($user_ip);
 
-        $this->calculateSubtotal();
-        $this->calculateShippingtotal();
-        $this->calculateTotal();
+        $this->resetTotal();
 
     }
 
@@ -36,9 +35,7 @@ class ShoppingCart extends Component
     {
         $this->items = $this->fetchUserCart($user_ip);
 
-        $this->calculateSubtotal();
-        $this->calculateShippingtotal();
-        $this->calculateTotal();
+        $this->resetTotal();
     }
 
     public function removeCartItem($itemId)
@@ -46,8 +43,8 @@ class ShoppingCart extends Component
         $cart = Cart::find($itemId);
         $cart->delete();
         
+        // $this->resetTotal();
         $this->emit('cartUpdated');
-        $this->resetTotal();
     }
 
     public function incrementCartItem($itemId)
@@ -57,8 +54,8 @@ class ShoppingCart extends Component
             'quantity' => $cart->quantity + 1
         ]);
        
+        // $this->resetTotal();
         $this->emit('cartUpdated');
-        $this->resetTotal();
     }
 
     public function decrementCartItem($itemId)
@@ -69,17 +66,17 @@ class ShoppingCart extends Component
         $cart->update([
             'quantity' => $cart->quantity - 1
         ]);
-       
+        
+        // $this->resetTotal();
         $this->emit('cartUpdated');
-
-        $this->resetTotal();
     }
-
+    
     public function resetTotal()
     {
         $this->calculateSubtotal();
         $this->calculateShippingtotal();
         $this->calculateTotal();
+
     }
 
     

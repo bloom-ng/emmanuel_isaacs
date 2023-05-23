@@ -1,7 +1,5 @@
 <div class="space-y-4 mt-30"   
-data-aos="fade-left"  
-data-aos-delay="200"
-data-aos-duration="600" 
+
 >
     <details
       class="group border-s-4 border-red-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"

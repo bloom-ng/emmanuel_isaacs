@@ -119,7 +119,7 @@
         <div id="app">
             @include('components.user.layout.nav')
         
-            <main class="mb-48">
+            <main class="mb-48 overflow-x-hidden">
                 {{ $slot }}
             </main>
 
