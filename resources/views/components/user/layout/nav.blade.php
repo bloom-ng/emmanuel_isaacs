@@ -22,13 +22,13 @@
                             stroke="currentColor" class="w-6 h-6 ml-1">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z" />
                           </svg> --}}
-                        <svg xmlns="http://www.w3.org/2000/svg" class="ionicon h-6 w-6 inline" viewBox="0 0 512 512">
+                        {{-- <svg xmlns="http://www.w3.org/2000/svg" class="ionicon h-6 w-6 inline" viewBox="0 0 512 512">
                             <path
                                 d="M160 164s1.44-33 33.54-59.46C212.6 88.83 235.49 84.28 256 84c18.73-.23 35.47 2.94 45.48 7.82C318.59 100.2 352 120.6 352 164c0 45.67-29.18 66.37-62.35 89.18S248 298.36 248 324"
                                 fill="none" stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10"
                                 stroke-width="40" />
                             <circle cx="248" cy="399.99" r="32" />
-                        </svg>
+                        </svg> --}}
                         <span class="text-xs ">About</span>
                     </a>
                 </div>
@@ -47,13 +47,23 @@
                         </svg>
                         <livewire:user-cart  classes="font-bold -ml-2 bg-red-500 text-white px-2 rounded-full  inline-block  scale-75 -translate-y-4" />
 
-                        <span class="text-xs">Cart</span>
+                        <span class="text-xs"></span>
                     </a>
                 </div>
 
-                <span aria-hidden="true" class="block h-6 w-px rounded-full bg-gray-200"></span>
+                @guest
+                <a href="{{route('login')}}" class="block shrink-0  px-2 py-2 text-gray-600  hover:text-red-800 ">
+                    <span class="text-xs">Login</span>
+                </a>
+                <a href="{{route('register')}}" class="block shrink-0  px-2 py-2 text-gray-600  hover:text-red-800 ">
+                    <span class="text-xs">Register</span>
+                </a>
+                @endguest
 
-                <div class="relative " x-data="{ open: false }">
+                {{-- <span aria-hidden="true" class="block h-6 w-px rounded-full bg-gray-200"></span> --}}
+                @auth
+
+                <div class="relative" x-data="{ open: false }">
                     <button x-on:click="open = ! open" class="block shrink-0 hover:text-red-800  p-2 ">
                         <span class="sr-only">Profile</span>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -63,8 +73,8 @@
                         </svg>
                     </button>
 
-                    <div class="flex fixed border-1 text-xs flex-col z-20 mt-2 py-2  -ml-10 backdrop-blur-sm bg-white/20 shadow-sm"
-                        x-show="open">
+                    <div x-show="open"  class="flex fixed w-40 border-1 text-xs flex-col mt-2 py-2  -ml-14 backdrop-blur-sm bg-white/40 shadow-sm">
+                        
                         <a href="#" class="border-b-2 p-1 flex items-center gap-2 px-4 hover:bg-amber-50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
@@ -82,7 +92,7 @@
 
                             Profile
                         </a>
-                        <a href="#" class="border-b-2 p-1 flex items-center gap-2 px-4 hover:bg-amber-50">
+                        <a href="{{route('logout')}}" class="border-b-2 p-1 flex items-center gap-2 px-4 hover:bg-amber-50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                 stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -90,9 +100,11 @@
                             </svg>
                             Sign out
                         </a>
+                        
                     </div>
-
+                    
                 </div>
+                @endauth
             </div>
 
         </div>

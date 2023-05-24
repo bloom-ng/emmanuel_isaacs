@@ -15,6 +15,7 @@ use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\StoreCartController;
+use App\Http\Controllers\StoreCheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::any('/logout', [AuthController::class, 'logout'])->name('logout');
 // Store
 
 Route::get('cart', [StoreCartController::class, 'index'])->name('store.cart');
+Route::get('checkout', [StoreCheckoutController::class, 'index'])->name('store.checkout');
 
 
 // Admin

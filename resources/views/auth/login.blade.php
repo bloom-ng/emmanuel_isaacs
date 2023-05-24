@@ -1,5 +1,5 @@
-<x-app-layout>
-    <div class="mx-auto px-4 md:px-8">
+<x-user-app-layout>
+    <div class="mx-auto px-4 md:px-8 mt-8">
         <x-partials.card>
             <x-slot name="title">{{ __('Login') }}</x-slot>
 
@@ -60,4 +60,4 @@
             </div>
         </x-partials.card>
     </div>
-</x-app-layout>
+</x-user-app-layout>

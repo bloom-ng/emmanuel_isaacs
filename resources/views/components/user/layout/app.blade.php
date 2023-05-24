@@ -14,16 +14,16 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
         
         <!-- Styles -->
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
         
         <!-- Icons -->
         <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
-
+        
         {{-- AOS --}}
         <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
         <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
+        
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
        
         {{--  / AOS --}}
         
@@ -137,7 +137,7 @@
             document.addEventListener('DOMContentLoaded', function() {
                 setTimeout(function() {
                 document.querySelector('.preloader').style.display = 'none';
-            }, 200);
+            }, 500);
             });
         </script>
         
