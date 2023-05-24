@@ -16,6 +16,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\StoreCartController;
 use App\Http\Controllers\StoreCheckoutController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -43,6 +44,11 @@ Route::any('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('cart', [StoreCartController::class, 'index'])->name('store.cart');
 Route::get('checkout', [StoreCheckoutController::class, 'index'])->name('store.checkout');
 
+// About
+
+Route::get('about', function() {
+    return view('about');
+})->name('about');
 
 // Admin
 
