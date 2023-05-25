@@ -44,6 +44,8 @@ Route::any('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('cart', [StoreCartController::class, 'index'])->name('store.cart');
 Route::get('checkout', [StoreCheckoutController::class, 'index'])->name('store.checkout');
 
+Route::post('checkout', [StoreCheckoutController::class, 'make_payment'])->name('pay');
+
 // About
 
 Route::get('about', function() {
