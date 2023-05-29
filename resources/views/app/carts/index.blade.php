@@ -14,7 +14,7 @@
                     <div class="flex flex-wrap justify-between">
                         <div class="md:w-1/2">
                             <form>
-                                <div class="flex items-center w-full">
+                                <div class="flex items-center w-full hidden">
                                     <x-inputs.text
                                         name="search"
                                         value="{{ $search ?? '' }}"
@@ -37,7 +37,7 @@
                             @can('create', App\Models\Cart::class)
                             <a
                                 href="{{ route('carts.create') }}"
-                                class="button button-primary"
+                                class="button button-primary "
                             >
                                 <i class="mr-1 icon ion-md-add"></i>
                                 @lang('crud.common.create')
@@ -57,9 +57,9 @@
                                 <th class="px-4 py-3 text-left">
                                     @lang('crud.carts.inputs.user_id')
                                 </th>
-                                <th class="px-4 py-3 text-left">
+                                {{-- <th class="px-4 py-3 text-left">
                                     @lang('crud.carts.inputs.session')
-                                </th>
+                                </th> --}}
                                 <th class="px-4 py-3 text-right">
                                     @lang('crud.carts.inputs.quantity')
                                 </th>
@@ -70,14 +70,15 @@
                             @forelse($carts as $cart)
                             <tr class="hover:bg-gray-50">
                                 <td class="px-4 py-3 text-left">
-                                    {{ $cart->product_id ?? '-' }}
+                                    {{ $cart->product->name ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
                                     {{ optional($cart->user)->name ?? '-' }}
+                                    {{ optional($cart->user)->email ?? '-' }}
                                 </td>
-                                <td class="px-4 py-3 text-left">
+                                {{-- <td class="px-4 py-3 text-left">
                                     {{ $cart->session ?? '-' }}
-                                </td>
+                                </td> --}}
                                 <td class="px-4 py-3 text-right">
                                     {{ $cart->quantity ?? '-' }}
                                 </td>

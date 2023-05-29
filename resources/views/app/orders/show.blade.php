@@ -9,9 +9,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <x-partials.card>
                 <x-slot name="title">
-                    <a href="{{ route('orders.index') }}" class="mr-4"
-                        ><i class="mr-1 icon ion-md-arrow-back"></i
-                    ></a>
+                    <a href="{{ route('orders.index') }}" class="mr-4"><i class="mr-1 icon ion-md-arrow-back"></i></a>
                     @lang('crud.orders.show_title')
                 </x-slot>
 
@@ -82,6 +80,10 @@
                         </h5>
                         <span>{{ $order->country ?? '-' }}</span>
                     </div>
+
+                    
+
+
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.orders.inputs.sub_total')
@@ -104,22 +106,58 @@
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.orders.inputs.order_status')
                         </h5>
-                        <span>{{ $order->order_status ?? '-' }}</span>
+                        <span>{{ App\Models\Order::getOrderStatusMapping()[$order->order_status] ?? '-' }}</span>
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.orders.inputs.payment_status')
                         </h5>
-                        <span>{{ $order->payment_status ?? '-' }}</span>
+                        <span>{{ App\Models\Order::getPaymentStatusMapping()[$order->payment_status] ?? '-' }}</span>
                     </div>
-                    <div class="mb-4">
+                    <div class="mb-4 hidden">
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.orders.inputs.payment_response')
                         </h5>
                         <span>{{ $order->payment_response ?? '-' }}</span>
                     </div>
+
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full divide-y-2 divide-gray-200 bg-white text-sm">
+                            <thead class="text-left">
+                                <tr>
+                                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                        Product
+                                    </th>
+                                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                        Qty
+                                    </th>
+                                    <th class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                        Amount (&#8358;)
+                                    </th>
+                                </tr>
+                            </thead>
+        
+                            <tbody class="divide-y divide-gray-200">
+                                @foreach ($order->orderItems as $item)
+                                    <tr>
+                                        <td class="whitespace-nowrap px-4 py-2 font-medium text-gray-900">
+                                            {{ $item->product->name }}
+                                        </td>
+                                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                            {{ $item->quantity }}
+                                        </td>
+                                        <td class="whitespace-nowrap px-4 py-2 text-gray-700">
+                                            {{ $item->price }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+        
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
 
+              
                 <div class="mt-10">
                     <a href="{{ route('orders.index') }}" class="button">
                         <i class="mr-1 icon ion-md-return-left"></i>
@@ -127,13 +165,14 @@
                     </a>
 
                     @can('create', App\Models\Order::class)
-                    <a href="{{ route('orders.create') }}" class="button">
-                        <i class="mr-1 icon ion-md-add"></i>
-                        @lang('crud.common.create')
-                    </a>
+                        <a href="{{ route('orders.create') }}" class="button">
+                            <i class="mr-1 icon ion-md-add"></i>
+                            @lang('crud.common.create')
+                        </a>
                     @endcan
                 </div>
             </x-partials.card>
+
         </div>
     </div>
 </x-app-layout>

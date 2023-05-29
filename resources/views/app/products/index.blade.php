@@ -126,13 +126,15 @@
                                     {{ $product->quantity ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
-                                    {{ $product->image ?? '-' }}
+                                    <img src="{{ $product->image ? '/storage/'.$product->image : 'https://images.placeholders.dev/?width=50&height=50&text=%20' }}" 
+                                        alt="{{$product->name}}" 
+                                        class="w-[50px]">
                                 </td>
                                 <td class="px-4 py-3 text-left">
-                                    {{ $product->image_2 ?? '-' }}
+                                    <img src="{{ $product->image_2 ? '/storage/'.$product->image_2 : 'https://images.placeholders.dev/?width=50&height=50&text=%20' }}" alt="{{$product->name}}" class="w-[50px]">
                                 </td>
                                 <td class="px-4 py-3 text-left">
-                                    {{ $product->thumbnail ?? '-' }}
+                                    <img src="{{ $product->thumbnail ?  '/storage/'.$product->thumbnail : 'https://images.placeholders.dev/?width=50&height=50&text=%20' }}" alt="{{$product->name}}" class="w-[50px]">
                                 </td>
                                 <td class="px-4 py-3 text-left">
                                     {{ $product->slug ?? '-' }}

@@ -18,7 +18,7 @@ class OrderItemPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -30,7 +30,7 @@ class OrderItemPolicy
      */
     public function view(User $user, OrderItem $model)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -41,7 +41,7 @@ class OrderItemPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -53,7 +53,7 @@ class OrderItemPolicy
      */
     public function update(User $user, OrderItem $model)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -65,7 +65,7 @@ class OrderItemPolicy
      */
     public function delete(User $user, OrderItem $model)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -77,7 +77,7 @@ class OrderItemPolicy
      */
     public function deleteAny(User $user)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**

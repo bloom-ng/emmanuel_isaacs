@@ -18,7 +18,7 @@ class CategoryPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -30,7 +30,7 @@ class CategoryPolicy
      */
     public function view(User $user, Category $model)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**

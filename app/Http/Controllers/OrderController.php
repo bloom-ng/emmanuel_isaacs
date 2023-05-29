@@ -21,6 +21,7 @@ class OrderController extends Controller
         $search = $request->get('search', '');
 
         $orders = Order::search($search)
+            ->whereNot("payment_status", Order::PAYMENT_STATUS_INITIATED)
             ->latest()
             ->paginate(5)
             ->withQueryString();
@@ -66,6 +67,7 @@ class OrderController extends Controller
     public function show(Request $request, Order $order)
     {
         $this->authorize('view', $order);
+        $order = Order::with(['orderItems', 'user'])->find($order->id);
 
         return view('app.orders.show', compact('order'));
     }

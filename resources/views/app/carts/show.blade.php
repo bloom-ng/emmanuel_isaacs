@@ -20,13 +20,14 @@
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.carts.inputs.product_id')
                         </h5>
-                        <span>{{ $cart->product_id ?? '-' }}</span>
+                        <span>{{ $cart->product->name ?? '-' }}</span>
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.carts.inputs.user_id')
                         </h5>
                         <span>{{ optional($cart->user)->name ?? '-' }}</span>
+                        <span>{{ optional($cart->user)->email ?? '-' }}</span>
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">

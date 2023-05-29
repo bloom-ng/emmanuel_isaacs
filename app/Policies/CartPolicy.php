@@ -18,7 +18,7 @@ class CartPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -30,7 +30,7 @@ class CartPolicy
      */
     public function view(User $user, Cart $model)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -41,7 +41,7 @@ class CartPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -53,7 +53,7 @@ class CartPolicy
      */
     public function update(User $user, Cart $model)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -65,7 +65,7 @@ class CartPolicy
      */
     public function delete(User $user, Cart $model)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -77,7 +77,7 @@ class CartPolicy
      */
     public function deleteAny(User $user)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**

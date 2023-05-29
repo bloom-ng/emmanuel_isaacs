@@ -18,7 +18,7 @@ class ContentPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -30,7 +30,7 @@ class ContentPolicy
      */
     public function view(User $user, Content $model)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**

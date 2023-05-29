@@ -38,19 +38,25 @@
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.products.inputs.image')
                         </h5>
-                        <span>{{ $product->image ?? '-' }}</span>
+                        <img src="{{ $product->image ? '/storage/'.$product->image : 'https://images.placeholders.dev/?width=50&height=50&text=%20' }}" 
+                        alt="{{$product->name}}" 
+                        class="w-[50px]">
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.products.inputs.image_2')
                         </h5>
-                        <span>{{ $product->image_2 ?? '-' }}</span>
+                        <img src="{{ $product->image_2 ? '/storage/'.$product->image_2 : 'https://images.placeholders.dev/?width=50&height=50&text=%20' }}" 
+                        alt="{{$product->name}}" 
+                        class="w-[50px]">
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.products.inputs.thumbnail')
                         </h5>
-                        <span>{{ $product->thumbnail ?? '-' }}</span>
+                        <img src="{{ $product->thumbnail ? '/storage/'.$product->thumbnail : 'https://images.placeholders.dev/?width=50&height=50&text=%20' }}" 
+                        alt="{{$product->name}}" 
+                        class="w-[50px]">
                     </div>
                     <div class="mb-4">
                         <h5 class="font-medium text-gray-700">
@@ -128,7 +134,7 @@
                         <h5 class="font-medium text-gray-700">
                             @lang('crud.products.inputs.download_link')
                         </h5>
-                        <span>{{ $product->download_link ?? '-' }}</span>
+                        <a class="text-blue-600" download="" href="{{ $product->download_link ?? '-' }}">Click to Download</a>
                     </div>
                 </div>
 

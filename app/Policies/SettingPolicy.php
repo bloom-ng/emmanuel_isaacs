@@ -18,7 +18,7 @@ class SettingPolicy
      */
     public function viewAny(User $user)
     {
-        return true;
+        return false;
     }
 
     /**
@@ -30,7 +30,7 @@ class SettingPolicy
      */
     public function view(User $user, Setting $model)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -41,7 +41,7 @@ class SettingPolicy
      */
     public function create(User $user)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -53,7 +53,7 @@ class SettingPolicy
      */
     public function update(User $user, Setting $model)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -65,7 +65,7 @@ class SettingPolicy
      */
     public function delete(User $user, Setting $model)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**
@@ -77,7 +77,7 @@ class SettingPolicy
      */
     public function deleteAny(User $user)
     {
-        return true;
+        return $user->role == "admin";
     }
 
     /**

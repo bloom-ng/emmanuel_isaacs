@@ -6,7 +6,7 @@
     </x-slot>
 
     <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 text-xs">
             <x-partials.card>
                 <x-slot name="title"> @lang('crud.orders.index_title') </x-slot>
 
@@ -66,7 +66,7 @@
                                 <th class="px-4 py-3 text-left">
                                     @lang('crud.orders.inputs.payment_ref')
                                 </th>
-                                <th class="px-4 py-3 text-left">
+                                {{-- <th class="px-4 py-3 text-left">
                                     @lang('crud.orders.inputs.transaction_id')
                                 </th>
                                 <th class="px-4 py-3 text-left">
@@ -83,15 +83,18 @@
                                 </th>
                                 <th class="px-4 py-3 text-left">
                                     @lang('crud.orders.inputs.country')
-                                </th>
+                                </th> --}}
                                 <th class="px-4 py-3 text-right">
-                                    @lang('crud.orders.inputs.sub_total')
+                                    @lang('crud.orders.inputs.sub_total') (&#8358;)
                                 </th>
-                                <th class="px-4 py-3 text-right">
+                                {{-- <th class="px-4 py-3 text-right">
                                     @lang('crud.orders.inputs.discount')
+                                </th> --}}
+                                <th class="px-4 py-3 text-right">
+                                    @lang('crud.orders.inputs.shipping_total') (&#8358;)
                                 </th>
                                 <th class="px-4 py-3 text-right">
-                                    @lang('crud.orders.inputs.shipping_total')
+                                    Date
                                 </th>
                                 <th class="px-4 py-3 text-left">
                                     @lang('crud.orders.inputs.order_status')
@@ -99,9 +102,9 @@
                                 <th class="px-4 py-3 text-left">
                                     @lang('crud.orders.inputs.payment_status')
                                 </th>
-                                <th class="px-4 py-3 text-left">
+                                {{-- <th class="px-4 py-3 text-left">
                                     @lang('crud.orders.inputs.payment_response')
-                                </th>
+                                </th> --}}
                                 <th></th>
                             </tr>
                         </thead>
@@ -123,7 +126,7 @@
                                 <td class="px-4 py-3 text-left">
                                     {{ $order->payment_ref ?? '-' }}
                                 </td>
-                                <td class="px-4 py-3 text-left">
+                                {{-- <td class="px-4 py-3 text-left">
                                     {{ $order->transaction_id ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
@@ -140,25 +143,28 @@
                                 </td>
                                 <td class="px-4 py-3 text-left">
                                     {{ $order->country ?? '-' }}
-                                </td>
+                                </td> --}}
                                 <td class="px-4 py-3 text-right">
                                     {{ $order->sub_total ?? '-' }}
                                 </td>
-                                <td class="px-4 py-3 text-right">
+                                {{-- <td class="px-4 py-3 text-right">
                                     {{ $order->discount ?? '-' }}
-                                </td>
+                                </td> --}}
                                 <td class="px-4 py-3 text-right">
                                     {{ $order->shipping_total ?? '-' }}
                                 </td>
-                                <td class="px-4 py-3 text-left">
-                                    {{ $order->order_status ?? '-' }}
+                                <td class="px-4 py-3 text-right">
+                                    {{ date("D, d, F, Y", strtotime($order->created_at))  ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
-                                    {{ $order->payment_status ?? '-' }}
+                                    {{ App\Models\Order::getOrderStatusMapping()[$order->order_status] ?? '-' }}
                                 </td>
                                 <td class="px-4 py-3 text-left">
+                                    {{ App\Models\Order::getPaymentStatusMapping()[$order->payment_status] ?? '-' }}
+                                </td>
+                                {{-- <td class="px-4 py-3 text-left">
                                     {{ $order->payment_response ?? '-' }}
-                                </td>
+                                </td> --}}
                                 <td
                                     class="px-4 py-3 text-center"
                                     style="width: 134px;"

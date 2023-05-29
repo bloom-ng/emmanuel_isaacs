@@ -48,23 +48,28 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
     public static function getPaymentStatusMapping()
     {
         return [
-            PAYMENT_STATUS_INITIATED => "Payment Initiated",
-            PAYMENT_STATUS_PROCESSING => "Payment Processing",
-            PAYMENT_STATUS_VERIFIED => "Payment Verified",
-            PAYMENT_STATUS_FAILED => "Payment Failed",
+            self::PAYMENT_STATUS_INITIATED => "Payment Initiated",
+            self::PAYMENT_STATUS_PROCESSING => "Payment Processing",
+            self::PAYMENT_STATUS_VERIFIED => "Payment Verified",
+            self::PAYMENT_STATUS_FAILED => "Payment Failed",
         ];
     }
 
     public static function getOrderStatusMapping()
     {
         return [
-            ORDER_STATUS_PENDING => "Order Pending",
-            ORDER_STATUS_PROCESSING => "Order Processing",
-            ORDER_STATUS_SHIPPED => "Order Shipped",
-            ORDER_STATUS_COMPLETE => "Order Complete",
+            self::ORDER_STATUS_PENDING => "Order Pending",
+            self::ORDER_STATUS_PROCESSING => "Order Processing",
+            self::ORDER_STATUS_SHIPPED => "Order Shipped",
+            self::ORDER_STATUS_COMPLETE => "Order Complete",
         ];
     }
 }

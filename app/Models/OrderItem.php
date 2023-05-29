@@ -16,4 +16,11 @@ class OrderItem extends Model
     protected $searchableFields = ['*'];
 
     protected $table = 'order_items';
+
+    protected $with = ['product'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }
