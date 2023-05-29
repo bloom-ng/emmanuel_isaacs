@@ -9,7 +9,7 @@ data-aos-duration="600"
     >
       <div class="grid grid-cols-1 lg:h-screen lg:grid-cols-2">
         <div class="relative z-10 lg:py-16">
-          <div class="relative h-64 sm:h-80 lg:h-full bg-gradient-to-r from-red-500 to-orange-500">
+          <div class="relative h-64 sm:h-80 lg:h-full shadow-xl animate-pulse bg-gradient-to-r from-red-500 to-orange-500">
             <img
               alt="House"
               src="assets/contact-us.jpg"
@@ -39,7 +39,7 @@ data-aos-duration="600"
             </p>
   
             <a
-              href="#footer"
+              href="#contact-us-form"
               class="mt-8 inline-block rounded border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
             >
               Get in Touch

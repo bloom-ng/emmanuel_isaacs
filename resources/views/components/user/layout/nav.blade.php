@@ -1,4 +1,4 @@
-<header aria-label="Page Header" class="bg-amber-50 shadow-sm ">
+<header aria-label="Page Header" class=" shadow-sm ">
     <div class="mx-auto max-w-screen-xl px-4 py-2 sm:px-6 lg:px-8 " data-aos="fade-up" data-aos-delay="300"
         data-aos-duration="800">
         <div class="flex justify-between">
@@ -79,7 +79,7 @@
                             </svg>
                             My Orders
                         </a>
-                        <a href="#" class="border-b-2 p-1 flex items-center gap-2 px-4 hover:bg-amber-50">
+                        <a href="{{route('user.profile')}}" class="border-b-2 p-1 flex items-center gap-2 px-4 hover:bg-amber-50">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                                 stroke="currentColor" class="w-4 h-4">
                                 <path stroke-linecap="round" stroke-linejoin="round"

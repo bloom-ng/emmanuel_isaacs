@@ -19,18 +19,19 @@ return new class extends Migration {
             $table->string('contact_phone');
             $table->string('name');
             $table->string('payment_ref');
-            $table->string('transaction_id');
+            $table->string('transaction_id')->nullable();
             $table->text('address_line_1');
             $table->text('address_line_2')->nullable();
-            $table->string('state');
-            $table->string('city');
-            $table->string('country');
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
+            $table->string('country')->nullable();
             $table->decimal('sub_total');
-            $table->decimal('discount');
-            $table->decimal('shipping_total');
+            $table->decimal('discount')->nullable();
+            $table->decimal('shipping_total')->nullable();
             $table->tinyInteger('order_status');
             $table->tinyInteger('payment_status');
-            $table->longText('payment_response');
+            $table->tinyInteger('payment_provider');
+            $table->longText('payment_response')->nullable();
 
             $table->timestamps();
         });

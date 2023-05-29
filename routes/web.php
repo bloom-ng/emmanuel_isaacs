@@ -36,15 +36,29 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('about', [HomeController::class, 'index'])->name('about');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::get('register', [AuthController::class, 'register'])->name('register');
+Route::put('register', [AuthController::class, 'registerUser'])->name('user.register');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
-Route::any('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::any('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(['auth']);
 
+Route::get('profile', [AuthController::class, 'profile'])->name('user.profile')
+                                                                 ->middleware(['auth']);
+Route::put('profile', [AuthController::class, 'profileUpdate'])->name('user.profile-update')
+                                                                 ->middleware(['auth']);
+Route::put('profile/password', [AuthController::class, 'passwordUpdate'])->name('user.password.update')
+                                                                 ->middleware(['auth']);
 // Store
 
 Route::get('cart', [StoreCartController::class, 'index'])->name('store.cart');
-Route::get('checkout', [StoreCheckoutController::class, 'index'])->name('store.checkout');
+Route::get('checkout', [StoreCheckoutController::class, 'index'])->name('store.checkout')
+                                                                 ->middleware(['auth']);
 
-Route::post('checkout', [StoreCheckoutController::class, 'make_payment'])->name('pay');
+Route::post('checkout', [StoreCheckoutController::class, 'initiatePayment'])->name('payment.initiate')
+                                                                            ->middleware(['auth']);
+
+Route::get('/payment/verify', [StoreCheckoutController::class, 'verify'])->name('payment.verify');
+Route::get('/order/success/{order}', [StoreCheckoutController::class, 'paymentSuccess'])->name('order.success');
+Route::get('/order/failed/{order}', [StoreCheckoutController::class, 'paymentFailed'])->name('order.failed');
 
 // About
 

@@ -20,10 +20,10 @@ return new class extends Migration {
             $table->string('password');
             $table->string('remember_token', 100)->nullable();
             $table->string('role');
-            $table->string('phone');
-            $table->longText('address');
-            $table->string('city');
-            $table->string('state');
+            $table->string('phone')->nullable();
+            $table->longText('address')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
 
             $table->timestamps();
         });

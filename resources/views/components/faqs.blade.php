@@ -1,8 +1,8 @@
-<div class="space-y-4 mt-30"   
+<div class="space-y-4 mt-48 "   
 
 >
     <details
-      class="group border-s-4 border-red-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
+      class="group shadow-lg border-s-4 border-red-200 rounded-tr-3xl  bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 py-12 [&_summary::-webkit-details-marker]:hidden"
       open
 
       data-aos="fade-left"  
@@ -11,7 +11,7 @@
     >
       <summary class="flex cursor-pointer items-center justify-between gap-1.5"  
        >
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-white">
             How can I place an order for books on your website?
         </h2>
   
@@ -31,7 +31,7 @@
         </span>
       </summary>
   
-      <p class="mt-4 leading-relaxed text-gray-700">
+      <p class="mt-4 leading-relaxed text-white">
         Placing an order on our website is simple. Just browse our collection, 
         select the books you want to purchase, and add them to your cart. Proceed to the checkout page, 
         provide your shipping details, and choose your preferred payment method. 
@@ -40,14 +40,14 @@
     </details>
   
     <details
-      class="group border-s-4 border-red-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
-
+      class="group border-s-4 py-12 border-red-50  bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 [&_summary::-webkit-details-marker]:hidden"
+    open
       data-aos="fade-left"  
       data-aos-delay="200"
       data-aos-duration="700"
     >
       <summary class="flex cursor-pointer items-center justify-between gap-1.5">
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-white">
             Are there any discounts or promotions available for bulk purchases?
         </h2>
   
@@ -67,7 +67,7 @@
         </span>
       </summary>
   
-      <p class="mt-4 leading-relaxed text-gray-700">
+      <p class="mt-4 leading-relaxed text-white">
         We appreciate bulk orders and offer discounts for them. 
         If you're interested in making a bulk purchase for books, 
         such as for educational institutions, book clubs, or corporate gifts, 
@@ -76,14 +76,14 @@
       </p>
     </details>
     <details
-      class="group border-s-4 border-red-500 bg-gray-50 p-6 [&_summary::-webkit-details-marker]:hidden"
-
+      class="group border-s-4 py-12  border-red-50  bg-gradient-to-r from-red-500 to-orange-500 text-white p-6 [&_summary::-webkit-details-marker]:hidden"
+      open
       data-aos="fade-left"  
       data-aos-delay="300"
       data-aos-duration="700"
     >
       <summary class="flex cursor-pointer items-center justify-between gap-1.5">
-        <h2 class="text-lg font-medium text-gray-900">
+        <h2 class="text-lg font-medium text-white">
             Are eBooks available for purchase on your website?
         </h2>
   
@@ -103,7 +103,7 @@
         </span>
       </summary>
   
-      <p class="mt-4 leading-relaxed text-gray-700">
+      <p class="mt-4 leading-relaxed text-white">
         Yes, the book is also available in digital format for purchase on our website. 
         Simply browse our book collection, select the ebook format 
         and complete the checkout process. Once your purchase is confirmed, 

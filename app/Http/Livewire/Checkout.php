@@ -14,11 +14,6 @@ class Checkout extends Component
     public $total;
     public $shippingTotal;
 
-    protected $listeners = [
-        'cartUpdated' => '$refresh',
-        'cartUpdated' => 'resetTotal',
-    ];
-
     // lifecycle hook
     public function mount(Request $request)
     {
@@ -38,38 +33,6 @@ class Checkout extends Component
         $this->resetTotal();
     }
 
-    public function removeCartItem($itemId)
-    {
-        $cart = Cart::find($itemId);
-        $cart->delete();
-        
-        // $this->resetTotal();
-        $this->emit('cartUpdated');
-    }
-
-    public function incrementCartItem($itemId)
-    {
-        $cart = Cart::find($itemId);
-        $cart->update([
-            'quantity' => $cart->quantity + 1
-        ]);
-       
-        // $this->resetTotal();
-        $this->emit('cartUpdated');
-    }
-
-    public function decrementCartItem($itemId)
-    {
-        $cart = Cart::find($itemId);
-        if($cart->quantity <= 1) return;
-
-        $cart->update([
-            'quantity' => $cart->quantity - 1
-        ]);
-        
-        // $this->resetTotal();
-        $this->emit('cartUpdated');
-    }
     
     public function resetTotal()
     {
@@ -106,11 +69,7 @@ class Checkout extends Component
     private function fetchUserCart($user_ip)
     {
         $user_cart = Cart::query()
-                            ->when(auth()->guest(), function ($query) use($user_ip) {
-                                $query->where('session', $user_ip);
-                            }, function ($query) {
-                                $query->where('user_id', auth()->id());
-                            })
+                            ->where('user_id', auth()->id())
                             ->get();
         return $user_cart;
     }

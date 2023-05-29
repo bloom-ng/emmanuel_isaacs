@@ -1,11 +1,12 @@
-<x-app-layout>
+<x-user-app-layout>
     <div class="mx-auto px-4 md:px-8">
         <x-partials.card>
             <x-slot name="title">{{ __('Register') }}</x-slot>
 
             <div class="flex-auto p-6">
-                <form method="POST" action="{{ route('register') }}">
+                <form method="POST" action="{{ route('user.register') }}">
                     @csrf
+                    @method("PUT")
 
                     <div class="mb-4 flex flex-wrap ">
                         <label for="name" class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 leading-normal md:text-right">{{ __('Name') }}</label>
@@ -68,4 +69,4 @@
             </div>
         </x-partials.card>
     </div>
-</x-app-layout>
+</x-user-app-layout>

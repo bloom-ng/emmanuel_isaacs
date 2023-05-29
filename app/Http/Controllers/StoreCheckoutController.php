@@ -3,109 +3,107 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
+
+use App\Services\Payment\Payment as PaymentService;
 
 class StoreCheckoutController extends Controller
 {
-    public $session = '';
     
     public function index(Request $request)
     {
-        $this->session = $request->ip();
-        $user_ip = $this->session;
-        // $this->items = $this->fetchUserCart($user_ip);
-
         $user_cart = Cart::query()
-                            ->when(Auth::guest(), function ($query) use($user_ip) {
-                                $query->where('session', $user_ip);
-                            }, function ($query) {
-                                $query->where('user_id', Auth::id());
-                            })
+                            ->where('user_id', Auth::id())
                             ->get();
-        // return dd($user_cart);
+        if(count($user_cart) < 1) return redirect()->route('home');
 
-        return view('store.checkout', compact('user_cart'));
+        $user = Auth::user();
+
+        return view('store.checkout', compact('user_cart', 'user'));
     }
 
-    public function make_payment()
+    public function initiatePayment(Request $request)
     {
-        $formData = [
-            'email' => request('email'),
-            'amount' => request('amount') * 100,
-            'callback_url' => route('thanks')
-        ];
-        $pay = json_decode($this->initiate_payment($formData));
-        if ($pay) {
-            if ($pay->status) {
-                return redirect($pay->data->authorization_url);
-            } else {
-                return back()->withError($pay->message);
-            }
-        } else {
-            return back()->withError("Something went wrong");
-        }
-    }
+        $validated = $request->validate([
+            "name" =>          ["required", "string"],
+            "contact_email" => ["required", "email"],
+            "contact_phone" => ["required", "string"],
+            "address_line_1" => ["required", "string"],
+            "address_line_2" => ["nullable", "string"],
+            "city" =>           ["nullable", "string"],
+            "state" =>          ["nullable", "string"],
+            "country" =>        ["nullable", "string"],
+            "sub_total" =>      ["required", "numeric"],
+            "shipping_total" => ["required", "numeric"],
+        ]);
 
-    public function payment_callback()
-    {
-        $response = json_decode($this->verify_payment(request('reference')));
-        if ($response) {
-            if ($response->status) {
-                $data = $response->data;
-                return view('thanks')->with(compact(['data']));
-            } else {
-                return back()->withError($response->message);
-            }
-        } else {
-            return back()->withError("Something went wrong");
-        }
-    }
+        $validated['payment_ref']   = PaymentService::generateRef();
+        $validated['user_id']       = Auth::id();
+        $validated['order_status']   = Order::ORDER_STATUS_PENDING;
+        $validated['payment_status'] = Order::PAYMENT_STATUS_INITIATED;
 
-    public function initiate_payment($formData)
-    {
-        $url = "https://api.paystack.co/transaction/initialize";
+        $cart_items = Cart::query()
+                            ->where('user_id', Auth::id())
+                            ->get();
 
-        $fields_string = http_build_query($formData);
-        $ch = curl_init();
-
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $fields_string);
-        curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-            "Authorization: Bearer " . env('PAYSTACK_SECRET_KEY'),
-            "Cache-Control: no-cache",
-        ));
-
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-        $result = curl_exec($ch);
-        curl_close($ch);
         
-        return $result;
+        $order = DB::transaction(function () use( $validated, $cart_items ) {
+           $order = Order::create($validated);
+
+           foreach ($cart_items as $key => $item) {
+                OrderItem::create([
+                    "order_id"      => $order->id,
+                    "product_id"    => $item->product_id,
+                    "quantity"      => $item->quantity,
+                    "price"      => $item->product->price
+                ]);
+           }
+
+           return $order;
+        }, 5);
+
+        return view('store.complete-checkout', [
+            'order' => $order,
+            'order_total' => $order->sub_total + $order->shipping_total,
+            'currency' => PaymentService::CURRENCY_NGN,
+            'paystackProviderId' => PaymentService::PROVIDER_PAYSTACK,
+            'raveProviderId' => PaymentService::PROVIDER_RAVE,
+        ]);
+
     }
 
-    public function verify_payment($reference)
+    public function verify(Request $request)
     {
-        $curl = curl_init();
+        $data = request()->validate([
+            'ref' => ['required', 'string'],
+            'provider' => ['required', 'string'],
+        ]);
+        $verified = false;
 
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => "https://api.paystack.co/transaction/verify/$reference",
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => "",
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 30,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => "GET",
-            CURLOPT_HTTPHEADER => array(
-                "Authorization: Bearer " . env('PAYSTACK_SECRET_KEY'),
-                "Cache-Control: no-cache",
-            ),
-        ));
+        $verified = PaymentService::verify($data['ref'], $data['provider']);
 
-        $response = curl_exec($curl);
-        curl_close($curl);
-
-        return  $response;
+        return response()->json([
+            'verified' => $verified
+        ]);
     }
+
+    public function paymentSuccess(Request $request, Order $order)
+    {
+        // clear cart
+        Cart::where('user_id', Auth::id())->delete();
+        return view('store.order-success', ['order' => $order]);
+    }
+
+    public function paymentFailed(Request $request, Order $order)
+    {
+        return view('store.order-failed', ['order' => $order]);
+    }
+
+    
+
 }

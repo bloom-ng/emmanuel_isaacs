@@ -33,8 +33,38 @@ class Order extends Model
 
     protected $searchableFields = ['*'];
 
+    const PAYMENT_STATUS_INITIATED = 1;
+    const PAYMENT_STATUS_PROCESSING = 2;
+    const PAYMENT_STATUS_VERIFIED = 3;
+    const PAYMENT_STATUS_FAILED = 4;
+    
+    const ORDER_STATUS_PENDING = 1;
+    const ORDER_STATUS_PROCESSING = 2;
+    const ORDER_STATUS_SHIPPED = 3;
+    const ORDER_STATUS_COMPLETE = 4;
+
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public static function getPaymentStatusMapping()
+    {
+        return [
+            PAYMENT_STATUS_INITIATED => "Payment Initiated",
+            PAYMENT_STATUS_PROCESSING => "Payment Processing",
+            PAYMENT_STATUS_VERIFIED => "Payment Verified",
+            PAYMENT_STATUS_FAILED => "Payment Failed",
+        ];
+    }
+
+    public static function getOrderStatusMapping()
+    {
+        return [
+            ORDER_STATUS_PENDING => "Order Pending",
+            ORDER_STATUS_PROCESSING => "Order Processing",
+            ORDER_STATUS_SHIPPED => "Order Shipped",
+            ORDER_STATUS_COMPLETE => "Order Complete",
+        ];
     }
 }

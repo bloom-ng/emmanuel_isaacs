@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+
+use App\Models\User;
 
 class AuthController extends Controller
 {
@@ -40,6 +44,97 @@ class AuthController extends Controller
     public function login()
     {
         return view('auth.login');
+    }
+
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+    public function registerUser(Request $request)
+    {
+        $validated = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
+            'phone' => ['nullable', 'string', 'max:20'],
+        ]);
+
+        $validated['role'] = "user";
+
+        $user = User::create($validated);
+        Auth::loginUsingId($user->id);
+        return redirect()->route('home');
+    }
+
+    public function profile()
+    {
+        return view('profile', ['user' => Auth::user()]);
+    }
+
+    public function profileUpdate(Request $request)
+    {
+        $user = Auth::user();
+
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => [
+                'required',
+                'email',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'address' => 'nullable',
+            'city' => 'nullable',
+            'state' => 'nullable',
+            'phone' => 'nullable',
+        ]);
+        // Update the user's profile information
+        $user->name = $request->name;
+        $user->phone = $request->phone;
+        $user->address = $request->address;
+        $user->city = $request->city;
+        $user->state = $request->state;
+        
+        // Check if the email has changed
+        if ($user->email !== $request->email) {
+            // Verify if another user already has the same email
+            $existingUser = User::where('email', $request->email)->first();
+            if ($existingUser) {
+                return redirect()
+                    ->back()
+                    ->withErrors(['email' => 'Another user already has the same email.']);
+            }
+            
+            $user->email = $request->email;
+        }
+        
+        $user->save();
+        
+        return redirect("/profile")
+            ->with('success', 'Profile updated successfully.');
+    }
+
+    public function passwordUpdate(Request $request)
+    {
+        $validated = $request->validate([
+            'old_password' => 'required',
+            'password' => 'required|confirmed|min:6',
+        ]);
+
+        $user = Auth::user();
+        
+        // Verify the old password
+        if (!Hash::check($request->old_password, $user->password)) {
+            return redirect()
+                ->route('user.profile')
+                ->withErrors(['old_password' => 'The old password does not match our records.']);
+        }
+        
+        // Update the password
+        $user->password = Hash::make($request->password);
+        $user->save();
+        return redirect("/profile")
+            ->with('success', 'Password updated successfully.');
     }
 
     public function logout(Request $request)
