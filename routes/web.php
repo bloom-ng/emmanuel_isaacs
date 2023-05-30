@@ -16,6 +16,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\StoreCartController;
 use App\Http\Controllers\StoreCheckoutController;
+use App\Http\Controllers\UserOrderController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -41,8 +42,9 @@ Route::put('register', [AuthController::class, 'registerUser'])->name('user.regi
 Route::post('/login', [AuthController::class, 'authenticate'])->name('login');
 Route::any('/logout', [AuthController::class, 'logout'])->name('logout')->middleware(['auth']);
 
+// Account
 Route::get('profile', [AuthController::class, 'profile'])->name('user.profile')
-                                                                 ->middleware(['auth']);
+                                                                ->middleware(['auth']);
 Route::put('profile', [AuthController::class, 'profileUpdate'])->name('user.profile-update')
                                                                  ->middleware(['auth']);
 Route::put('profile/password', [AuthController::class, 'passwordUpdate'])->name('user.password.update')
@@ -59,6 +61,8 @@ Route::post('checkout', [StoreCheckoutController::class, 'initiatePayment'])->na
 Route::get('/payment/verify', [StoreCheckoutController::class, 'verify'])->name('payment.verify');
 Route::get('/order/success/{order}', [StoreCheckoutController::class, 'paymentSuccess'])->name('order.success');
 Route::get('/order/failed/{order}', [StoreCheckoutController::class, 'paymentFailed'])->name('order.failed');
+
+Route::get('/orders', [UserOrderController::class, 'index'])->name('user.orders')->middleware(['auth']);
 
 // About
 
