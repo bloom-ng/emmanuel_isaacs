@@ -14,6 +14,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\OrderItemController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\StoreCartController;
 use App\Http\Controllers\StoreCheckoutController;
 use App\Http\Controllers\UserOrderController;
@@ -70,6 +71,10 @@ Route::get('about', function() {
     return view('about');
 })->name('about');
 
+// Contact
+
+Route::post('contact-us', [ContactController::class, 'store'])->name('contact-us');
+
 // Admin
 
 Route::get('/admin/home', [AdminDashboardController::class, 'index'])->name('admin.home');
@@ -79,6 +84,7 @@ Route::prefix('/admin')
         Route::resource('users', UserController::class);
         Route::resource('carts', CartController::class);
         Route::resource('categories', CategoryController::class);
+        Route::resource('contacts', ContactController::class);
         Route::resource('logs', LogController::class);
         Route::resource('orders', OrderController::class);
         Route::resource('order-items', OrderItemController::class);

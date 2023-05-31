@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SettingController;
 use App\Http\Controllers\Api\ContentController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ContactController;
 use App\Http\Controllers\Api\UserCartsController;
 use App\Http\Controllers\Api\OrderItemController;
 use App\Http\Controllers\Api\UserOrdersController;
@@ -100,3 +101,5 @@ Route::name('api.')
 
         Route::apiResource('contents', ContentController::class);
     });
+
+    Route::apiResource('contacts', ContactController::class);

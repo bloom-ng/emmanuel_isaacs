@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
 
         $this->call(CartSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(ContactSeeder::class);
         $this->call(ContentSeeder::class);
         $this->call(LogSeeder::class);
         $this->call(OrderSeeder::class);
