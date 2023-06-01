@@ -42,7 +42,7 @@ class ProductUpdateRequest extends FormRequest
             'short_description' => ['required', 'max:255', 'string'],
             'type' => ['required', 'max:255'],
             'shipping_price' => ['nullable', 'numeric'],
-            'download_link' => ['nullable', 'max:255', 'string'],
+            'download_link' => ['nullable', 'max:10000', 'file'],
         ];
     }
 }
