@@ -61,6 +61,7 @@ class AuthController extends Controller
         ]);
 
         $validated['role'] = "user";
+        $validated['password'] = Hash::make($request->password);
 
         $user = User::create($validated);
         Auth::loginUsingId($user->id);

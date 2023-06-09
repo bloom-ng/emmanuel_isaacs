@@ -53,15 +53,15 @@ class ProductController extends Controller
 
         $validated = $request->validated();
 
-        $validated['thumbnail'] = $request->file('thumbnail')->store('public/images');
-        $validated['image'] = $request->file('image')->store('public/images');
+        $validated['thumbnail'] = str_replace("public/images", "images", $request->file('thumbnail')->store('public/images'));
+        $validated['image'] = str_replace("public/images", "images", $request->file('image')->store('public/images'));
 
         if ($request->hasFile('image_2')) {
-            $validated['image_2'] = $request->file('image_2')->store('public/images');
+            $validated['image_2'] = str_replace("public/images", "images", $request->file('image_2')->store('public/images'));
         }
 
         if ($request->hasFile('download_link')) {
-            $validated['download_link'] = $request->file('download_link')->store('public/images');
+            $validated['download_link'] = str_replace("public/images", "images", $request->file('download_link')->store('public/images'));
         }
 
         // generate slug
@@ -117,19 +117,19 @@ class ProductController extends Controller
         $validated = $request->validated();
 
         if ($request->hasFile('thumbnail')) {
-            $validated['thumbnail'] = $request->file('thumbnail')->store('public/images');
+            $validated['thumbnail'] = str_replace("public/images", "images", $request->file('thumbnail')->store('public/images'));
         }
 
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('public/images');
+            $validated['image'] = str_replace("public/images", "images", $request->file('image')->store('public/images'));
         }
 
         if ($request->hasFile('image_2')) {
-            $validated['image_2'] = $request->file('image_2')->store('public/images');
+            $validated['image_2'] = str_replace("public/images", "images", $request->file('image_2')->store('public/images'));
         }
 
         if ($request->hasFile('download_link')) {
-            $validated['download_link'] = $request->file('download_link')->store('public/images');
+            $validated['download_link'] = str_replace("public/images", "images", $request->file('download_link')->store('public/images'));
         }
 
 

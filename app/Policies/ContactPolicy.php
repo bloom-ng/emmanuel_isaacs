@@ -3,14 +3,15 @@
 namespace App\Policies;
 
 use App\Models\User;
+use App\Models\Contact;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class UserPolicy
+class ContactPolicy
 {
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view any models.
+     * Determine whether the contact can view any models.
      *
      * @param  App\Models\User  $user
      * @return mixed
@@ -21,84 +22,84 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can view the model.
+     * Determine whether the contact can view the model.
      *
      * @param  App\Models\User  $user
-     * @param  App\Models\User  $model
+     * @param  App\Models\Contact  $model
      * @return mixed
      */
-    public function view(User $user, User $model)
+    public function view(User $user, Contact $model)
     {
         return $user->role == "admin";
     }
 
     /**
-     * Determine whether the user can create models.
+     * Determine whether the contact can create models.
      *
      * @param  App\Models\User  $user
      * @return mixed
      */
     public function create(User $user)
     {
-        return $user->role == "admin";
+        return false;
     }
 
     /**
-     * Determine whether the user can update the model.
+     * Determine whether the contact can update the model.
      *
      * @param  App\Models\User  $user
-     * @param  App\Models\User  $model
+     * @param  App\Models\Contact  $model
      * @return mixed
      */
-    public function update(User $user, User $model)
+    public function update(User $user, Contact $model)
     {
-        return $user->role == "admin";
+        return false;
     }
 
     /**
-     * Determine whether the user can delete the model.
+     * Determine whether the contact can delete the model.
      *
      * @param  App\Models\User  $user
-     * @param  App\Models\User  $model
+     * @param  App\Models\Contact  $model
      * @return mixed
      */
-    public function delete(User $user, User $model)
+    public function delete(User $user, Contact $model)
     {
-        return $user->role == "admin";
+        return true;
     }
 
     /**
      * Determine whether the user can delete multiple instances of the model.
      *
      * @param  App\Models\User  $user
-     * @param  App\Models\User  $model
+     * @param  App\Models\Contact  $model
      * @return mixed
      */
     public function deleteAny(User $user)
     {
-        return $user->role == "admin";
+        return true;
     }
 
     /**
-     * Determine whether the user can restore the model.
+     * Determine whether the contact can restore the model.
      *
      * @param  App\Models\User  $user
-     * @param  App\Models\User  $model
+     * @param  App\Models\Contact  $model
      * @return mixed
      */
-    public function restore(User $user, User $model)
+    public function restore(User $user, Contact $model)
     {
         return false;
     }
 
     /**
-     * Determine whether the user can permanently delete the model.
+     * Determine whether the contact can permanently delete the model.
      *
      * @param  App\Models\User  $user
-     * @param  App\Models\User  $model
+     * @param  App\Models\Contact  $model
      * @return mixed
      */
-    public function forceDelete(User $user, User $model)
+    public function forceDelete(User $user, Contact $model)
     {
         return false;
     }

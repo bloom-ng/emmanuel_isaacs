@@ -1,23 +1,23 @@
 <x-user-app-layout>
 
-    @if (session()->has('success')) 
+    @if (session()->has('success'))
     <div id="announcement" class="bg-green-600 px-4 py-3 text-white">
         <p class="text-center text-sm font-medium">
-          {{session("success")}}
+            {{session("success")}}
         </p>
-      </div>
+    </div>
     @endif
     @if ($errors->any())
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+            <li>{{ $error }}</li>
             @endforeach
         </ul>
     </div>
-@endif
-    <section  class="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 lg:px-12 mt-2">
-            
+    @endif
+    <section class="mx-auto max-w-screen-2xl px-4 py-6 sm:px-6 lg:px-12 mt-2">
+
 
         <form method="POST" action="{{route('user.profile-update')}}">
             @csrf
@@ -36,8 +36,7 @@
                             <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Full
                                 name</label>
                             <div class="mt-2">
-                                <input type="text" name="name" id="first-name" 
-                                    value="{{$user->name}}"
+                                <input type="text" name="name" id="first-name" value="{{$user->name}}"
                                     class="block w-full  px-1.5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
@@ -47,39 +46,36 @@
                                 address</label>
                             <div class="mt-2">
                                 <input id="email" name="email" type="email" autocomplete="email"
-                                value="{{$user->email}}"
+                                    value="{{$user->email}}"
                                     class="block w-full  px-1.5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
 
                         <div class="sm:col-span-2">
                             <label for="email" class="block text-sm font-medium leading-6 text-gray-900">Phone
-                                </label>
+                            </label>
                             <div class="mt-2">
-                                <input id="phone" name="phone" type="tel" autocomplete="phone"
-                                value="{{$user->phone}}"
+                                <input id="phone" name="phone" type="tel" autocomplete="phone" value="{{$user->phone}}"
                                     class="block w-full  px-1.5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
 
 
                         <div class="col-span-full">
-                            <label for="street-address"
-                                class="block text-sm font-medium leading-6 text-gray-900"> Address</label>
+                            <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">
+                                Address</label>
                             <div class="mt-2">
-                                <input type="text" name="address" id="address"
-                                    autocomplete="street-address"
+                                <input type="text" name="address" id="address" autocomplete="street-address"
                                     value="{{$user->address}}"
                                     class="block w-full  px-1.5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
 
                         <div class="sm:col-span-2 sm:col-start-1">
-                            <label for="city"
-                                class="block text-sm font-medium leading-6 text-gray-900">City</label>
+                            <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
                             <div class="mt-2">
                                 <input type="text" name="city" id="city" autocomplete="address-level2"
-                                value="{{$user->city}}"
+                                    value="{{$user->city}}"
                                     class="block w-full  px-1.5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
@@ -89,12 +85,12 @@
                                 Province</label>
                             <div class="mt-2">
                                 <input type="text" name="state" id="region" autocomplete="address-level1"
-                                value="{{$user->state}}"
+                                    value="{{$user->state}}"
                                     class="block w-full px-1.5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
 
-                        
+
                     </div>
                 </div>
             </div>
@@ -112,7 +108,7 @@
             @csrf
             @method("PUT")
             <div class="space-y-2">
-               
+
 
                 <div class="border-b border-gray-900/10 pb-8">
                     <h2 class="text-base font-semibold leading-7 text-gray-900">Account Information</h2>
@@ -120,8 +116,9 @@
 
                     <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-6">
                         <div class="sm:col-span-2">
-                            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Old Password
-                                </label>
+                            <label for="first-name" class="block text-sm font-medium leading-6 text-gray-900">Old
+                                Password
+                            </label>
                             <div class="mt-2">
                                 <input type="password" name="old_password"
                                     class="block w-full  px-1.5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
@@ -132,7 +129,7 @@
                             <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">New
                                 Password</label>
                             <div class="mt-2">
-                                <input type="password" name="password" 
+                                <input type="password" name="password"
                                     class="block w-full  px-1.5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>
@@ -140,7 +137,7 @@
                             <label for="last-name" class="block text-sm font-medium leading-6 text-gray-900">Confirm
                                 Password</label>
                             <div class="mt-2">
-                                <input type="password" name="password_confirmation" 
+                                <input type="password" name="password_confirmation"
                                     class="block w-full  px-1.5 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
                             </div>
                         </div>

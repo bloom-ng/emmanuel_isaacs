@@ -27,9 +27,9 @@ class ProductUpdateRequest extends FormRequest
             'name' => ['required', 'max:255', 'string'],
             'category_id' => ['required', 'max:255'],
             'quantity' => ['required', 'numeric'],
-            'image' => ['sometimes', 'max:255', 'string'],
-            'image_2' => ['nullable', 'max:255', 'string'],
-            'thumbnail' => ['sometimes', 'max:255', 'string'],
+            'image' => ['sometimes', 'max:255', 'file'],
+            'image_2' => ['nullable', 'max:255', 'file'],
+            'thumbnail' => ['sometimes', 'max:255', 'file'],
             // 'slug' => ['required', 'max:255', 'string'],
             'weight' => ['required', 'numeric'],
             'height' => ['required', 'numeric'],
@@ -42,7 +42,7 @@ class ProductUpdateRequest extends FormRequest
             'short_description' => ['required', 'max:255', 'string'],
             'type' => ['required', 'max:255'],
             'shipping_price' => ['nullable', 'numeric'],
-            'download_link' => ['nullable', 'max:255', 'string'],
+            'download_link' => ['nullable', 'max:10000', 'file'],
         ];
     }
 }

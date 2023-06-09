@@ -203,4 +203,20 @@ return [
             'type' => 'Type',
         ],
     ],
+
+    'contacts' => [
+        'name' => 'Contacts',
+        'index_title' => 'Contacts List',
+        'new_title' => 'New Contact',
+        'create_title' => 'Create Contact',
+        'edit_title' => 'Edit Contact',
+        'show_title' => 'Show Contact',
+        'inputs' => [
+            'first_name' => 'First Name',
+            'last_name' => 'Last Name',
+            'email' => 'Email',
+            'phone_number' => 'Phone Number',
+            'message' => 'Message',
+        ],
+    ],
 ];
