@@ -36,18 +36,18 @@ class AddToCart extends Component
             $user_product_cart->update([
                 'quantity' => $user_product_cart->quantity + 1
             ]);
-            session()->flash('success', 'Item Added to Cart.');
-            $this->emit('ItemAdded');
-            return;
-        }
-        $user_cart_item = [
-            'product_id' => $this->product->id,
-            'quantity' => $this->quantity,
-            'user_id' => Auth::id(),
-            'session' => $user_ip
-        ];
+           
+        } else {
 
-        Cart::create($user_cart_item);
+            $user_cart_item = [
+                'product_id' => $this->product->id,
+                'quantity' => $this->quantity,
+                'user_id' => Auth::id(),
+                'session' => $user_ip
+            ];
+    
+            Cart::create($user_cart_item);
+        }
         session()->flash('success', 'Item Added to Cart.');
         $this->emit('ItemAdded');
     }

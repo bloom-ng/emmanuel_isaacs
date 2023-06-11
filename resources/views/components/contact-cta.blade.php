@@ -34,12 +34,15 @@ data-aos-duration="600"
             </p>
   
             <p class="mt-4 text-gray-600">
-                Prefer written communication? You can send us an email at support@emmanuelisaacs.com. 
+                Prefer written communication? You can send us an email at 
+                <a href="mailto:support@emmanuelisaacs.com" class="text-orange-600 ">
+                  support@emmanuelisaacs.com
+                </a> 
                 Whether you have inquiries, suggestions, or need further information, our team is ready to assist you promptly.
             </p>
   
             <a
-              href="#contact-us-form"
+              href="mailto:support@emmanuelisaacs.com"
               class="mt-8 inline-block rounded border border-orange-600 bg-orange-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
             >
               Get in Touch

@@ -58,5 +58,7 @@
 
     <x-faqs />
 
+    <x-our-partners />
+
 
 </x-user-app-layout>

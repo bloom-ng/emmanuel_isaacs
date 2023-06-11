@@ -43,14 +43,14 @@
                         </div>
                     </div>
 
-                    <div class="mb-4 flex flex-wrap">
-                        <div class="md:w-2/3 pr-4 pl-4 md:mx-1/3">
-                            <button type="submit" class="button button-primary">
+                    <div class="mb-4 mt-2 flex gap-2 flex-wrap">
+                        <div class="md:w-2/3 pr-4 pl-4 my-2  md:mx-1/3">
+                            <button type="submit" class="button  button-primary">
                                 {{ __('Login') }}
                             </button>
 
                             @if (Route::has('password.request'))
-                                <a class="button" href="{{ route('password.request') }}">
+                                <a class="button my-2" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
                                 </a>
                             @endif

@@ -37,7 +37,7 @@
             <p class="mt-2">
               <span class="sr-only"> Regular Price </span>
 {{-- Add sale logic later --}}
-              <span class="tracking-wider text-gray-900 font-semibold"> &#8358;{{$product->price}} </span>
+              <span class="tracking-wider text-gray-900 font-semibold"> &#8358;{{number_format($product->price, 2)}} </span>
             </p>
           </div>
         </a>
