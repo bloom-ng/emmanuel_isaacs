@@ -118,8 +118,9 @@
               </svg>
             </div>
 
-            <p class="mt-1 text-lg font-medium text-gray-700">REV. PROF. CHINEDU NEBO, CON, NPOM, FNSE, FNMS, FMSN,
-              FNATE, FPLPI, FNAEng</p>
+            <p class="mt-1 text-lg font-medium text-gray-700">REV. PROF. CHINEDU NEBO, <br><span class="text-sm">CON,
+                NPOM, FNSE, FNMS, FMSN,
+                FNATE, FPLPI, FNAEng</span></p>
           </div>
         </div>
 
