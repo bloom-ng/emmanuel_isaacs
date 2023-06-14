@@ -118,7 +118,7 @@
               </svg>
             </div>
 
-            <p class="mt-1 text-lg font-medium text-gray-700">REV. PROF. CHINEDU NEBO, <br><span class="text-sm">CON,
+            <p class="mt-1 text-lg font-medium text-gray-700">REV. PROF. Chinedu Nebo, <br><span class="text-xs">CON,
                 NPOM, FNSE, FNMS, FMSN,
                 FNATE, FPLPI, FNAEng</span></p>
           </div>
