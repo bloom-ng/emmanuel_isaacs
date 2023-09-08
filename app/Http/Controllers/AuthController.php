@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 
 use App\Models\User;
+use Illuminate\Support\Facades\Password;
 
 class AuthController extends Controller
 {
@@ -136,6 +137,51 @@ class AuthController extends Controller
         $user->save();
         return redirect("/profile")
             ->with('success', 'Password updated successfully.');
+    }
+
+    public function forgotPassword()
+    {
+        return view('auth.passwords.reset');
+    }
+
+    public function sendResetLinkEmail(Request $request)
+    {
+
+        $validated = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+            'password_confirmation' => 'required|min:6',
+        ]);
+
+        $user = User::where("email", $request->email)->first();
+
+        if(!$user){
+            return redirect()
+                ->route('password.request')
+                ->withErrors(['email' => 'This user is not in our records']);
+        } else {
+            // Verify the old password
+            if ($request->password !== $request->password_confirmation) {
+                return redirect()
+                    ->route('password.request')
+                    ->withErrors(['password_confirmation' => 'The passwords does not match.']);
+            } else {
+
+                // Update the password
+                $user->password = Hash::make($request->password);
+                $user->save();
+                return redirect("/login")
+                    ->with('success', 'Password updated successfully.');
+            }
+        }
+        
+        // $status = Password::sendResetLink(
+        //     $request->only('email')
+        // );
+
+        // return $status === Password::RESET_LINK_SENT
+        //     ? back()->with('status', __($status))
+        //     : back()->withErrors(['email' => __($status)]);
     }
 
     public function logout(Request $request)

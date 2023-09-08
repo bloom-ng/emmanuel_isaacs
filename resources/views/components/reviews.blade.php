@@ -8,9 +8,14 @@
       <blockquote data-aos="fade-right" data-aos-delay="200" data-aos-duration="700"
         class=" backdrop-blur-md shadow-xl hover:shadow-md rounded-lg bg-gradient-to-tr from-amber-50 to-amber-200 hover:to-amber-300 p-8">
         <div class="flex items-center gap-4">
-
-
           <div>
+            <div class="flex justify-center">
+              <div class="h-20 w-20 rounded-full border border-red-600 overflow-hidden">
+                <img
+                  src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
+                  alt="user_img" class="object-cover w-full h-full" />
+              </div>
+            </div>
             <div class="flex justify-center gap-0.5 text-green-500">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                 <path
@@ -34,7 +39,11 @@
               </svg>
             </div>
 
-            <p class="mt-1 text-lg font-medium text-gray-700">Dr. Solomon E. Arase, NPM, fdc</p>
+            <p class="mt-1 text-lg font-medium text-gray-700">Dr. Solomon E. Arase, NPM, fdc:
+              <br>
+              <span class="text-xs">Inspector General of
+                Police - (2015-2016)</span>
+            </p>
           </div>
         </div>
 
@@ -49,9 +58,14 @@
       <blockquote data-aos="fade-up" data-aos-delay="300" data-aos-duration="700"
         class="rounded-lg bg-gradient-to-r from-red-200 to-orange-200 hover:bg-red-100 p-8">
         <div class="flex items-center gap-4">
-
-
           <div>
+            <div class="flex justify-center">
+              <div class="h-20 w-20 rounded-full border border-red-600 overflow-hidden">
+                <img
+                  src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
+                  alt="user_img" class="object-cover w-full h-full" />
+              </div>
+            </div>
             <div class="flex justify-center gap-0.5 text-green-500">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                 <path
@@ -92,9 +106,14 @@
       <blockquote data-aos="fade-left" data-aos-delay="200" data-aos-duration="600"
         class=" shadow-xl hover:shadow-md  rounded-lg bg-gradient-to-tr from-amber-50 to-amber-200 hover:to-amber-300 p-8">
         <div class="flex items-center gap-4">
-
-
           <div>
+            <div class="flex justify-center">
+              <div class="h-20 w-20 rounded-full border border-red-600 overflow-hidden">
+                <img
+                  src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
+                  alt="user_img" class="object-cover w-full h-full" />
+              </div>
+            </div>
             <div class="flex justify-center gap-0.5 text-green-500">
               <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
                 <path
@@ -118,7 +137,8 @@
               </svg>
             </div>
 
-            <p class="mt-1 text-lg font-medium text-gray-700">REV. PROF. Chinedu Nebo, <br><span class="text-xs">CON,
+            <p class="mt-1 text-lg font-medium text-gray-700">REV. PROF. Chinedu Nebo, <br><span class="text-xs">Former
+                Minister of Power</span> <br> <span class="text-xs">CON,
                 NPOM, FNSE, FNMS, FMSN,
                 FNATE, FPLPI, FNAEng</span></p>
           </div>
