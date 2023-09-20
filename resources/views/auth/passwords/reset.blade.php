@@ -4,17 +4,17 @@
             <x-slot name="title">{{ __('Reset Password') }}</x-slot>
 
             <div class="flex-auto p-6">
-                <form method="POST" action="{{ route('password.request.update') }}">
+                <form method="POST" action="{{ route('password.reset') }}">
                     @csrf
 
-                    {{-- <input type="hidden" name="token" value="{{ $token }}"> --}}
+                    <input type="hidden" name="token" value="{{ $token }}">
 
                     <div class="mb-4 flex flex-wrap ">
                         <label for="email" class="md:w-1/3 pr-4 pl-4 pt-2 pb-2 leading-normal md:text-right">{{
                             __('E-Mail Address') }}</label>
 
                         <div class="md:w-1/2 pr-4 pl-4">
-                            <x-inputs.email name="email" value="{{ $email ?? old('email') }}" required
+                            <x-inputs.email readonly name="email" value="{{ $email ?? old('email') }}" required
                                 autocomplete="email" autofocus />
 
                             @error('email')

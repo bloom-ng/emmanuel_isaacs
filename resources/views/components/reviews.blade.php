@@ -11,9 +11,7 @@
           <div>
             <div class="flex justify-center">
               <div class="h-20 w-20 rounded-full border border-red-600 overflow-hidden">
-                <img
-                  src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
-                  alt="user_img" class="object-cover w-full h-full" />
+                <img src="/assets/arase.jpg" alt="user_img" class="object-cover w-full h-full" />
               </div>
             </div>
             <div class="flex justify-center gap-0.5 text-green-500">
@@ -61,9 +59,7 @@
           <div>
             <div class="flex justify-center">
               <div class="h-20 w-20 rounded-full border border-red-600 overflow-hidden">
-                <img
-                  src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
-                  alt="user_img" class="object-cover w-full h-full" />
+                <img src="/assets/omotola.jpg" alt="user_img" class="object-cover w-full h-full" />
               </div>
             </div>
             <div class="flex justify-center gap-0.5 text-green-500">
@@ -109,9 +105,7 @@
           <div>
             <div class="flex justify-center">
               <div class="h-20 w-20 rounded-full border border-red-600 overflow-hidden">
-                <img
-                  src="https://png.pngtree.com/png-clipart/20210915/ourmid/pngtree-user-avatar-login-interface-abstract-blue-icon-png-image_3917504.jpg"
-                  alt="user_img" class="object-cover w-full h-full" />
+                <img src="/assets/chinedu-nebo.jpg" alt="user_img" class="object-cover w-full h-full" />
               </div>
             </div>
             <div class="flex justify-center gap-0.5 text-green-500">

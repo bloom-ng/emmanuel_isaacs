@@ -50,9 +50,11 @@ Route::put('profile', [AuthController::class, 'profileUpdate'])->name('user.prof
                                                                  ->middleware(['auth']);
 Route::put('profile/password', [AuthController::class, 'passwordUpdate'])->name('user.password.update')
                                                                  ->middleware(['auth']);
-// Store
+// Password
 Route::get("/password/reset", [AuthController::class, 'forgotPassword'])->name('password.request');
-Route::post("/password/reset", [AuthController::class, 'sendResetLinkEmail'])->name('password.request.update');
+Route::post("/password/reset", [AuthController::class, 'sendResetLinkEmail'])->name('password.request.link');
+Route::get('/reset-password', [AuthController::class, 'showResetForm'])->name('password.reset');
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->name('password.reset');
 
 Route::get('cart', [StoreCartController::class, 'index'])->name('store.cart');
 Route::get('checkout', [StoreCheckoutController::class, 'index'])->name('store.checkout')

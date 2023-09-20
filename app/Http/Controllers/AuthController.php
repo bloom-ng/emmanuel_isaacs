@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 use App\Models\User;
 use Illuminate\Support\Facades\Password;
@@ -141,47 +142,88 @@ class AuthController extends Controller
 
     public function forgotPassword()
     {
-        return view('auth.passwords.reset');
+        return view('auth.forgot-password');
     }
 
     public function sendResetLinkEmail(Request $request)
     {
 
-        $validated = $request->validate([
-            'email' => 'required|email',
-            'password' => 'required',
-            'password_confirmation' => 'required|min:6',
+        // $validated = $request->validate([
+        //     'email' => 'required|email',
+        //     'password' => 'required',
+        //     'password_confirmation' => 'required|min:6',
+        // ]);
+
+        // $user = User::where("email", $request->email)->first();
+
+        // if(!$user){
+        //     return redirect()
+        //         ->route('password.request')
+        //         ->withErrors(['email' => 'This user is not in our records']);
+        // } else {
+        //     // Verify the old password
+        //     if ($request->password !== $request->password_confirmation) {
+        //         return redirect()
+        //             ->route('password.request')
+        //             ->withErrors(['password_confirmation' => 'The passwords does not match.']);
+        //     } else {
+
+        //         // Update the password
+        //         $user->password = Hash::make($request->password);
+        //         $user->save();
+        //         return redirect("/login")
+        //             ->with('success', 'Password updated successfully.');
+        //     }
+        // }
+        $request->validate([
+            "email" => ['required', 'email'],
         ]);
-
-        $user = User::where("email", $request->email)->first();
-
-        if(!$user){
-            return redirect()
-                ->route('password.request')
-                ->withErrors(['email' => 'This user is not in our records']);
-        } else {
-            // Verify the old password
-            if ($request->password !== $request->password_confirmation) {
-                return redirect()
-                    ->route('password.request')
-                    ->withErrors(['password_confirmation' => 'The passwords does not match.']);
-            } else {
-
-                // Update the password
-                $user->password = Hash::make($request->password);
-                $user->save();
-                return redirect("/login")
-                    ->with('success', 'Password updated successfully.');
-            }
-        }
         
-        // $status = Password::sendResetLink(
-        //     $request->only('email')
-        // );
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
 
-        // return $status === Password::RESET_LINK_SENT
-        //     ? back()->with('status', __($status))
-        //     : back()->withErrors(['email' => __($status)]);
+        return $status === Password::RESET_LINK_SENT
+            ? back()->with('status', __($status))
+            : back()->withErrors(['email' => __($status)]);
+    }
+
+    public function showResetForm(Request $request)
+    {
+        $token = $request->query('token'); // Get the token from the query parameters
+        $email = $request->query('email'); // Get the email from the query parameters
+        return view('auth.passwords.reset', compact('token', 'email'));
+    }
+
+    public function resetPassword(Request $request)
+    {
+        //Welcome
+
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:6',
+        ]);
+    
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => bcrypt($password),
+                ])->setRememberToken(Str::random(60));
+                
+                $user->save();
+            }
+        );
+    
+        if ($status == Password::PASSWORD_RESET) {
+            return redirect('/login')
+                ->with('success', 'Password reset successful. You can now log in with your new password.');
+        } else {
+            return back()
+                ->withInput($request->only('email'))
+                ->withErrors(['email' => __($status)]);
+        }
     }
 
     public function logout(Request $request)
